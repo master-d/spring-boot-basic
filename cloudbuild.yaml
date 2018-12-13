@@ -1,0 +1,5 @@
+-name: 'gcr.io/cloud-builders/gradle'
+ args: ['clean','build']
+-name: 'gcr.io/cloud-builders/gcloud'
+ args: ['app', 'deploy', 'build/resources/main/appengine-web.xml']
+timeout: '1600s'
