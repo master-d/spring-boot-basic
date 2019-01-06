@@ -9,25 +9,31 @@
 </head>
 <body>
 <h1>Hi</h1>
-<div class="form">
+<form method="POST">
 	<div>
 		<span class="label">First Name:</span>
 		<input type="text" id="inp-fname" name='fname' />
 	</div>
-</div>
+</form>
 <div id="results"></div>
 </body>
 <script type="text/javascript">
 // place javascript code here to POST the 'firstname' 
 // form value to the server
-$.ajax({
-	url: "/sendFirstName",
-	data: { fname: $("#inp-fname").val() },
-	method: "POST"
-}).done(function(data) {
-	$("#results").text("The server says: " + data);
-}).error(function(xhr) {
-	$("#results").text(xhr.responseText);
+$("form").submit(function(e) {
+	e.preventDefault();
+	
+	$.ajax({
+		url: "/sendFirstName",
+		data: { fname: $("#inp-fname").val() },
+		method: "POST"
+	}).done(function(data) {
+		$("#results").text("The server says: " + data);
+	}).fail(function(xhr) {
+		$("#results").text(xhr.responseText);
+	});
+	
+	return false;
 });
 </script>
 </html>
