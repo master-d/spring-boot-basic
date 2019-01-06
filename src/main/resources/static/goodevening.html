@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Goodevening</title>
+<!--  jquery include from CDN -->
+<script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<h1>Hi</h1>
+<div class="form">
+	<div>
+		<span class="label">First Name:</span>
+		<input type="text" id="inp-fname" name='fname' />
+	</div>
+</div>
+<div id="results"></div>
+</body>
+<script type="text/javascript">
+// place javascript code here to POST the 'firstname' 
+// form value to the server
+$.ajax({
+	url: "/sendFirstName",
+	data: { fname: $("#inp-fname").val() },
+	method: "POST"
+}).done(function(data) {
+	$("#results").text("The server says: " + data);
+}).error(function(xhr) {
+	$("#results").text(xhr.responseText);
+});
+</script>
+</html>
